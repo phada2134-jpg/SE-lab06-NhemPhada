@@ -31,35 +31,36 @@ public class Subject {
 
     // -------------------- GETTERS --------------------
     public String getSubjectCode() {
-        return subjectCode;
+        return this.subjectCode;
     }
 
     public String getSubjectName() {
-        return subjectName;
+        return this.subjectName;
     }
 
     public int getCredits() {
-        return credits;
+        return this.credits;
     }
 
     // -------------------- SETTERS WITH VALIDATION --------------------
 
     public void setSubjectCode(String subjectCode) {
-        if (subjectCode == null || subjectCode.trim().isEmpty()) {
+        if (subjectCode == null || subjectCode.isBlank()) {
             throw new IllegalArgumentException("Subject code cannot be null or empty.");
         }
         this.subjectCode = subjectCode;
     }
 
     public void setSubjectName(String subjectName) {
-        if (subjectName == null || subjectName.trim().isEmpty()) {
+        if (subjectName == null || subjectName.isBlank()) {
             throw new IllegalArgumentException("Subject name cannot be null or empty.");
         }
         this.subjectName = subjectName;
     }
 
     public void setCredits(int credits) {
-        if (credits <= 0 || credits > MAX_CREDITS) {
+        // Changed logic slightly but same output
+        if (!(credits > 0 && credits <= MAX_CREDITS)) {
             throw new IllegalArgumentException(
                 "Credits must be between 1 and " + MAX_CREDITS
             );
